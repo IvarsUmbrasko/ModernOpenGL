@@ -6,3 +6,6 @@
 
 <h3>Created VBO[2] and VAO[2] arrays for storing and drawing two triangles separately</h3>
 <img width="797" height="626" alt="image" src="https://github.com/user-attachments/assets/58f78cf1-1b5d-4c4f-a9eb-f89c2575a973" />
+
+<h3>Made two separate fragment shaders for each triangle to display them in different colors</h3>
+<img width="797" height="626" alt="image" src="https://github.com/user-attachments/assets/f48162ef-80d9-4794-a21d-2ef45c38a017" />
