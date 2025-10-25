@@ -9,3 +9,7 @@
 
 <h3>Made two separate fragment shaders for each triangle to display them in different colors</h3>
 <img width="797" height="626" alt="image" src="https://github.com/user-attachments/assets/f48162ef-80d9-4794-a21d-2ef45c38a017" />
+
+<h3>Made same variables in vertex shader as outs and in fragment shader as ins. This method open us opportunity send data from vertex shader to fragment shader</h3>
+<img width="796" height="628" alt="image" src="https://github.com/user-attachments/assets/8c7eaba7-89ac-4caa-9ff4-60bcac7e6844" />
+
