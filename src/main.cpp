@@ -3,6 +3,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <cmath>
+#include <../shader_s.h>
+
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int heigth)
@@ -18,29 +21,31 @@ void processInpute(GLFWwindow *window)
     }
 }
 
-const char *vertexShaderSource = "#version 450 core\n"
-                                 "layout (location = 0) in vec3 aPos;\n"
-                                 "out vec4 vertexColor;\n"
-                                 "void main()\n"
-                                 "{\n"
-                                 "gl_Position = vec4(aPos, 1.0);\n"
-                                 "vertexColor = vec4(0.5, 0.0, 0.0, 1.0);\n"
-                                 "}\0";
+// const char *vertexShaderSource = "#version 450 core\n"
+//                                  "layout (location = 0) in vec3 aPos;\n"
+//                                  "layout (location = 1) in vec3 aColor;\n"
+//                                  "out vec3 ourColor;\n"
+//                                  "void main()\n"
+//                                  "{\n"
+//                                  "gl_Position = vec4(aPos, 1.0);\n"
+//                                  "ourColor = aColor;\n"
+//                                  "}\0";
 
-const char *fragmentShader1Source = "#version 450 core\n"
-                                    "out vec4 FragColor;\n"
-                                    "in vec4 vertexColor;\n"
-                                    "void main()\n"
-                                    "{\n"
-                                    "FragColor = vertexColor;\n"
-                                    "}\n";
+// const char *fragmentShader1Source = "#version 450 core\n"
+//                                     "out vec4 FragColor;\n"
+//                                     "uniform vec4 ourColor;\n"
+//                                     "void main()\n"
+//                                     "{\n"
+//                                     "FragColor = ourColor;\n"
+//                                     "}\n";
 
-const char *fragmentShader2Source = "#version 450 core\n"
-                                    "out vec4 FragColor;\n"
-                                    "void main()\n"
-                                    "{\n"
-                                    "FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
-                                    "}\n";
+// const char *fragmentShader2Source = "#version 450 core\n"
+//                                     "out vec4 FragColor;\n"
+//                                     "in vec3 ourColor;\n"
+//                                     "void main()\n"
+//                                     "{\n"
+//                                     "FragColor = vec4(ourColor, 1.0f);\n"
+//                                     "}\n";
 
 int main()
 {
@@ -65,31 +70,34 @@ int main()
         return -1;
     }
 
-    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
+    Shader firstTriangleShader("shaders/shader_1.vs", "shaders/shader_1.fs");
+    Shader secondTriangleShader("shaders/shader_2.vs", "shaders/shader_2.fs");
 
-    unsigned int fragmentShaderOrange = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShaderOrange, 1, &fragmentShader1Source, NULL);
-    glCompileShader(fragmentShaderOrange);
+    // unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    // glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    // glCompileShader(vertexShader);
 
-    unsigned int shaderProgramOrange = glCreateProgram();
-    glAttachShader(shaderProgramOrange, vertexShader);
-    glAttachShader(shaderProgramOrange, fragmentShaderOrange);
-    glLinkProgram(shaderProgramOrange);
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShaderOrange);
+    // unsigned int fragmentShaderOrange = glCreateShader(GL_FRAGMENT_SHADER);
+    // glShaderSource(fragmentShaderOrange, 1, &fragmentShader1Source, NULL);
+    // glCompileShader(fragmentShaderOrange);
 
-    unsigned int fragmentShaderYellow = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShaderYellow, 1, &fragmentShader2Source, NULL);
-    glCompileShader(fragmentShaderYellow);
+    // unsigned int shaderProgramOrange = glCreateProgram();
+    // glAttachShader(shaderProgramOrange, vertexShader);
+    // glAttachShader(shaderProgramOrange, fragmentShaderOrange);
+    // glLinkProgram(shaderProgramOrange);
+    // glDeleteShader(vertexShader);
+    // glDeleteShader(fragmentShaderOrange);
 
-    unsigned int shaderProgramYellow = glCreateProgram();
-    glAttachShader(shaderProgramYellow, vertexShader);
-    glAttachShader(shaderProgramYellow, fragmentShaderYellow);
-    glLinkProgram(shaderProgramYellow);
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShaderYellow);
+    // unsigned int fragmentShaderYellow = glCreateShader(GL_FRAGMENT_SHADER);
+    // glShaderSource(fragmentShaderYellow, 1, &fragmentShader2Source, NULL);
+    // glCompileShader(fragmentShaderYellow);
+
+    // unsigned int shaderProgramYellow = glCreateProgram();
+    // glAttachShader(shaderProgramYellow, vertexShader);
+    // glAttachShader(shaderProgramYellow, fragmentShaderYellow);
+    // glLinkProgram(shaderProgramYellow);
+    // glDeleteShader(vertexShader);
+    // glDeleteShader(fragmentShaderYellow);
 
     float firstTriangle[] = {
         -0.9f, -0.5f, 0.0f,
@@ -97,9 +105,9 @@ int main()
         -0.9f, 0.5f, 0.0f};
 
     float secondTriangle[] = {
-        0.9f, -0.5f, 0.0f,
-        0.9f, 0.5f, 0.0f,
-        0.0f, 0.0f, 0.0f};
+        0.9f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.9f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
 
     // unsigned int indices[] = {
     //     0, 1, 3,
@@ -121,12 +129,15 @@ int main()
     glBindVertexArray(VAO[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
@@ -138,14 +149,25 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glUseProgram(shaderProgramOrange);
+        // glUseProgram(shaderProgramOrange); 
+        firstTriangleShader.use();
+        float timeValue = glfwGetTime();
+        float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
+
+        firstTriangleShader.setVec4("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
+
+        // int vertexColorLocation = glGetUniformLocation(shaderProgramOrange, "ourColor");
+
+        // glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
         glBindVertexArray(VAO[0]);
         // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
-        glUseProgram(shaderProgramYellow);
+        secondTriangleShader.use();
+
+        // glUseProgram(shaderProgramYellow);
         glBindVertexArray(VAO[1]);
-        glDrawArrays(GL_TRIANGLES, 0, 3);   
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -154,8 +176,8 @@ int main()
     glDeleteVertexArrays(2, VAO);
     glDeleteBuffers(2, VBO);
     // glDeleteBuffers(1, &EBO);
-    glDeleteProgram(shaderProgramOrange);
-    glDeleteProgram(shaderProgramYellow);
+    // glDeleteProgram(shaderProgramOrange);
+    // glDeleteProgram(shaderProgramYellow);
 
     glfwTerminate();
     return 0;
