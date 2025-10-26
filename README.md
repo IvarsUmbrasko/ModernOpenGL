@@ -14,5 +14,7 @@
 <img width="796" height="628" alt="image" src="https://github.com/user-attachments/assets/8c7eaba7-89ac-4caa-9ff4-60bcac7e6844" />
 
 <h3>Made shader class so in main.cpp are two objects what controls two triangles separated</h3>
-![Untitled](https://github.com/user-attachments/assets/133fc3af-ace2-4886-90e9-e93c6a39cff1)
+
+![Untitled](https://github.com/user-attachments/assets/bae69022-62b4-4601-b0bf-131e59659ceb)
+
 
