@@ -13,3 +13,8 @@
 <h3>Made same variables in vertex shader as outs and in fragment shader as ins. This method open us opportunity send data from vertex shader to fragment shader</h3>
 <img width="796" height="628" alt="image" src="https://github.com/user-attachments/assets/8c7eaba7-89ac-4caa-9ff4-60bcac7e6844" />
 
+<h3>Made shader class so in main.cpp are two objects what controls two triangles separated</h3>
+
+![Untitled](https://github.com/user-attachments/assets/bae69022-62b4-4601-b0bf-131e59659ceb)
+
+
