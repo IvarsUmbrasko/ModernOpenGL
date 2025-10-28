@@ -5,6 +5,7 @@
 
 #include <cmath>
 #include <../shader_s.h>
+#include <stb_image.h>
 
 using namespace std;
 
@@ -73,6 +74,23 @@ int main()
     Shader firstTriangleShader("shaders/shader_1.vs", "shaders/shader_1.fs");
     Shader secondTriangleShader("shaders/shader_2.vs", "shaders/shader_2.fs");
 
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    int width, height, nrChannels;
+    unsigned char *data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
     // unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     // glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     // glCompileShader(vertexShader);
@@ -149,7 +167,7 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // glUseProgram(shaderProgramOrange); 
+        // glUseProgram(shaderProgramOrange);
         firstTriangleShader.use();
         float timeValue = glfwGetTime();
         float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
