@@ -17,4 +17,6 @@
 
 ![Untitled](https://github.com/user-attachments/assets/bae69022-62b4-4601-b0bf-131e59659ceb)
 
+<h3>Made texture on rectangle</h3>
+<img width="795" height="627" alt="image" src="https://github.com/user-attachments/assets/2fecf81f-283f-47ac-9050-1aa605087c86" />
 
