@@ -20,3 +20,5 @@
 <h3>Made texture on rectangle</h3>
 <img width="795" height="627" alt="image" src="https://github.com/user-attachments/assets/2fecf81f-283f-47ac-9050-1aa605087c86" />
 
+<h3>Just added for each texture color mix with vertex color</h3>
+<img width="797" height="625" alt="image" src="https://github.com/user-attachments/assets/28372719-574d-4ddd-9765-1d872facc6e2" />
