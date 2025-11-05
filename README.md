@@ -22,3 +22,7 @@
 
 <h3>Just added for each texture color mix with vertex color</h3>
 <img width="797" height="625" alt="image" src="https://github.com/user-attachments/assets/28372719-574d-4ddd-9765-1d872facc6e2" />
+
+<h3>Added second texture</h3>
+<img width="799" height="627" alt="image" src="https://github.com/user-attachments/assets/62d1feea-1d88-4a76-8bba-55466155c204" />
+
