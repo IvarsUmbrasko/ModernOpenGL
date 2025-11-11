@@ -9,6 +9,7 @@
                 "-g",
                 "-std=c++17",
                 "-I${workspaceFolder}/include",
+                "-I${workspaceFolder}/lib/glm",
                 "-L${workspaceFolder}/lib",
                 "${workspaceFolder}/src/main.cpp",
                 "${workspaceFolder}/src/glad.c",
