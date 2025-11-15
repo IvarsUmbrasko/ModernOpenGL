@@ -26,3 +26,7 @@
 <h3>Added second texture</h3>
 <img width="799" height="627" alt="image" src="https://github.com/user-attachments/assets/62d1feea-1d88-4a76-8bba-55466155c204" />
 
+<h3>Rotated by 90 degrees and scaled by 0.5 smaller</h3>
+<img width="796" height="625" alt="image" src="https://github.com/user-attachments/assets/42032272-30a8-4c5e-87b3-609576575297" />
+
+
