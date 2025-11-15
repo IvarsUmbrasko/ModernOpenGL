@@ -115,10 +115,10 @@ int main()
     //     0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
 
     float rectangle[] = {
-        0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-        -0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f};
+        0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+        0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f};
 
     unsigned int indices[] = {
         0, 1, 3,
@@ -141,12 +141,12 @@ int main()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
+    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+    // glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
 
     unsigned int texture1, texture2;
     glGenTextures(1, &texture1);
@@ -155,7 +155,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, nrChannels;
@@ -216,8 +216,15 @@ int main()
     // glBindVertexArray(0);
 
     rectangleShader.use();
-    glUniform1i(glGetUniformLocation(rectangleShader.ID, "texture1"), 0);
+    rectangleShader.setInt("texture1", 0);
+    // glUniform1i(glGetUniformLocation(rectangleShader.ID, "texture1"), 0);
     rectangleShader.setInt("texture2", 1);
+
+    // glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
+    // glm::mat4 trans = glm::mat4(1.0f);
+    // trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
+    // vec = trans * vec;
+    // std::cout << vec.x << vec.y << vec.z << std::endl;
 
     while (!glfwWindowShouldClose(window))
     {
@@ -231,7 +238,13 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
 
+        glm::mat4 transform  = glm::mat4(1.0f);
+        transform  = glm::rotate(transform , glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+        transform  = glm::scale(transform , glm::vec3(0.5, 0.5, 0.5));
+
         rectangleShader.use();
+        unsigned int transformLoc = glGetUniformLocation(rectangleShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
