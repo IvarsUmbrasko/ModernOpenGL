@@ -29,4 +29,6 @@
 <h3>Rotated by 90 degrees and scaled by 0.5 smaller</h3>
 <img width="796" height="625" alt="image" src="https://github.com/user-attachments/assets/42032272-30a8-4c5e-87b3-609576575297" />
 
+<h3>Translated box to the right bottom corner and added rotation using time to display rotation every frame</h3>
 
+![Gif](https://github.com/user-attachments/assets/07a22121-c215-466d-a1e4-cd7adbe8b37e)
