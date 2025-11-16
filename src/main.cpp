@@ -239,8 +239,10 @@ int main()
         glBindTexture(GL_TEXTURE_2D, texture2);
 
         glm::mat4 transform  = glm::mat4(1.0f);
-        transform  = glm::rotate(transform , glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-        transform  = glm::scale(transform , glm::vec3(0.5, 0.5, 0.5));
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        transform = glm::rotate(transform , (float)glfwGetTime(), glm::vec3(0.0, 0.0, 1.0));
+        
+        // transform  = glm::scale(transform , glm::vec3(0.5, 0.5, 0.5));
 
         rectangleShader.use();
         unsigned int transformLoc = glGetUniformLocation(rectangleShader.ID, "transform");
