@@ -75,6 +75,7 @@ int main()
         return -1;
     }
 
+    glEnable(GL_DEPTH_TEST);
     // Shader firstTriangleShader("shaders/shader_1.vs", "shaders/shader_1.fs");
     // Shader secondTriangleShader("shaders/shader_2.vs", "shaders/shader_2.fs");
     Shader rectangleShader("shaders/rec_shader.vs", "shaders/rec_shader.fs");
@@ -267,9 +268,9 @@ int main()
     {
 
         processInpute(window);
-
+        
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
         glActiveTexture(GL_TEXTURE1);
