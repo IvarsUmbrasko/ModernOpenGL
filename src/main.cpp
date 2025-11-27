@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -298,6 +297,13 @@ int main()
         // glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 view = glm::mat4(1.0f);
         glm::mat4 projection = glm::mat4(1.0f);
+        glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+        glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+        glm::vec3 cameraDiraction = glm::normalize(cameraPos - cameraTarget);
+        glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+        glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDiraction));
+
+
 
         // model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
         view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
