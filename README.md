@@ -44,3 +44,7 @@
 ![rotation](https://github.com/user-attachments/assets/42738740-f920-4f1c-9cb0-d9c4c829c514)
 
 ![move](https://github.com/user-attachments/assets/d3523309-8d4d-4d8e-8e06-a6d059274cf7)
+
+![cameramovement](https://github.com/user-attachments/assets/6aa2e585-f502-432e-a638-deb1c4149bf4)
+
+
