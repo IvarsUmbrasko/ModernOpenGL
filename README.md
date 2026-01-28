@@ -47,4 +47,5 @@
 
 ![cameramovement](https://github.com/user-attachments/assets/6aa2e585-f502-432e-a638-deb1c4149bf4)
 
+![fov](https://github.com/user-attachments/assets/17e18aab-3493-4280-a19c-af9d76cb6c5e)
 
